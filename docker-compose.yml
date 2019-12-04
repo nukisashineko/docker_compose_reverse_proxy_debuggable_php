@@ -5,8 +5,8 @@ services:
     build: .
     container_name: 'server1'
     volumes:
-      - ./public-html:/var/www/html
-      - ./20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
+      - ./phpserver1/var/www/html/public-html:/var/www/html
+      - ./phpserver1/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
     environment:
       TEST: "test"
     ports: 
