@@ -5,12 +5,21 @@ services:
     build: .
     container_name: 'server1'
     volumes:
-      - ./phpserver1/var/www/html/public-html:/var/www/html
+      - ./phpserver1/var/www/html:/var/www/html
       - ./phpserver1/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
     environment:
-      TEST: "test"
-    ports: 
+      VIRTUAL_HOST: 'blog1.nginx.com'
+      LETSENCRYPT_HOST: 'blog1.nginx.com'
+      LETSENCRYPT_EMAIL: 'example@blog1.nginx.com'
+      XDEBUG_HOST: '192.168.11.8'
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./proxy/html:/usr/share/nginx/html
+      - ./proxy/etc/nginx/conf.d/:/etc/nginx/conf.d
+    ports:
       - "80:80"
-    expose: 
-      - "80"
+      - "443:443"
+      - "9000:9000"
+    restart: always
 
