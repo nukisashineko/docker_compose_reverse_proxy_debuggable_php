@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+
+  phpserver1:
+    build: .
+    container_name: 'server1'
+    volumes:
+      - ./blog1.nginx.com/var/www/html:/var/www/html
+      - ./blog1.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
+    environment:
+      VIRTUAL_HOST: 'blog1.nginx.com'
+      LETSENCRYPT_HOST: 'blog1.nginx.com'
+      LETSENCRYPT_EMAIL: 'example@blog1.nginx.com'
+      XDEBUG_IDEKEY: 'phpstorm_phpserver1'
+      # 母艦のIPアドレスを指定する
+      XDEBUG_HOST: '192.168.11.8'
+  phpserver2:
+    build: .
+    container_name: 'server2'
+    volumes:
+      - ./blog2.nginx.com/var/www/html:/var/www/html
+      - ./blog2.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
+    environment:
+      VIRTUAL_HOST: 'blog2.nginx.com'
+      LETSENCRYPT_HOST: 'blog2.nginx.com'
+      LETSENCRYPT_EMAIL: 'example@blog2.nginx.com'
+      XDEBUG_IDEKEY: 'phpstorm_phpserver2'
+      # 母艦のIPアドレスを指定する
+      XDEBUG_HOST: '192.168.11.8'
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./proxy/html:/usr/share/nginx/html
+      - ./proxy/etc/nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    restart: always
+
