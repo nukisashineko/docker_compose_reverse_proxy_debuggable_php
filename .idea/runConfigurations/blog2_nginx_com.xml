@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="blog2.nginx.com" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="blog2.nginx.com" session_id="phpstorm_phpserver2">
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="blog1.nginx.com" id="de1a2ff8-be68-4cf6-bf92-f5a43a3615b9" name="blog1.nginx.com" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/../phpserver1/var/www/html/index.php" remote-root="/var/www/html/index.php" />
+        </path_mappings>
+      </server>
+      <server host="blog2.nginx.com" id="c06767e1-11ca-44b2-a2d0-47ee30d579a3" name="blog2.nginx.com" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/../phpserver2/var/www/html/index.php" remote-root="/var/www/html/index.php" />
+        </path_mappings>
+      </server>
+    </servers>
+  </component>
+</project>
