@@ -112,9 +112,39 @@ ServerName blog2.nginx.com
 │   ├── etc
 │   │   └── nginx
 │   │       └── conf.d
-│   │           └── default.conf # reverse proxyの設定
+│   │           └── default.conf # reverse proxyの設定(80を転送)
 │   └── html
 │       └── index.html
 └── README.md
 ```
 
+### 使い方
+1. phpstorm (or idea ultimate) を用意する
+1. 下記に用意した ipとホスト を /etc/hosts に追記する
+1. cloneしたディレクトリをphpstormを開く
+1. ./docker-compose.yml の XDEBUG_HOST を自分のPCのIPアドレスに置き換える
+1. File > Setting > Languages & Frameworks > PHP > Debug
+    - Xdebug > debug port を 10000 で指定する
+        - ( 20_xdebug_setting.ini の xdebug.remote_port と同じものを指定する )
+1. debugする
+    1. git管理されている Edit Configuration の blog1.nginx.com を選択
+    1. 虫のアイコンをクリック
+    1. ./blog1.nginx.com/var/www/html/index.php に break pointを貼る
+    1. http://blog1.nginx.com/ へアクセスし、breakpointで止まっていたら成功
+
+```/etc/hosts
+127.0.0.1 blog1.nginx.com
+127.0.0.1 blog2.nginx.com
+```
+
+### 備考
+Edit Configuration情報を自分で作りたい人用メモ
+
+1. File > Setting > Languages & Frameworks > PHP > Debug
+     - Xdebug > debug port を xdebug.remote_port に合わせる
+1. File > Setting > Languages & Frameworks > PHP > Server
+     - Host は /etc/hosts に追記してあり nginxのdefault.confで指定されていることを確認
+     - Mapping は docker-compose.yml のvolumesで設定した場所を指定すること
+1. Edit Configuration > Add > PHP Remote Server
+     - 上記(PHP > Server)で作成したサーバー情報を選択
+     - docker-compose.yml の environment > XDEBUG_HOST で指定したものを選択
