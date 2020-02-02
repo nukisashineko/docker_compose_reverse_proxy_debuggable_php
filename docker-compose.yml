@@ -11,6 +11,8 @@ services:
       VIRTUAL_HOST: 'blog1.nginx.com'
       LETSENCRYPT_HOST: 'blog1.nginx.com'
       LETSENCRYPT_EMAIL: 'example@blog1.nginx.com'
+      XDEBUG_IDEKEY: 'phpstorm_phpserver1'
+      # 母艦のIPアドレスを指定する
       XDEBUG_HOST: '192.168.11.8'
   phpserver2:
     build: .
@@ -22,6 +24,8 @@ services:
       VIRTUAL_HOST: 'blog2.nginx.com'
       LETSENCRYPT_HOST: 'blog2.nginx.com'
       LETSENCRYPT_EMAIL: 'example@blog2.nginx.com'
+      XDEBUG_IDEKEY: 'phpstorm_phpserver2'
+      # 母艦のIPアドレスを指定する
       XDEBUG_HOST: '192.168.11.8'
   proxy:
     image: nginx:latest
