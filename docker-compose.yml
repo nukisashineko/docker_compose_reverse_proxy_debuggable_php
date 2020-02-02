@@ -3,7 +3,6 @@ services:
 
   phpserver1:
     build: .
-    container_name: 'server1'
     volumes:
       - ./blog1.nginx.com/var/www/html:/var/www/html
       - ./blog1.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
@@ -16,7 +15,6 @@ services:
       XDEBUG_HOST: '192.168.11.8'
   phpserver2:
     build: .
-    container_name: 'server2'
     volumes:
       - ./blog2.nginx.com/var/www/html:/var/www/html
       - ./blog2.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
