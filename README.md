@@ -148,3 +148,8 @@ Edit Configuration情報を自分で作りたい人用メモ
 1. Edit Configuration > Add > PHP Remote Server
      - 上記(PHP > Server)で作成したサーバー情報を選択
      - docker-compose.yml の environment > XDEBUG_HOST で指定したものを選択
+
+#### cert 作り方
+
+mkdir -p certs/blog1.nginx.com/certs; docker run -v $PWD/certs/blog1.nginx.com/certs:/certs  -e SSL_DNS=blog1.nginx.com   -e SSL_SUBJECT=blog1.nginx.com   stakater/ssl-certs-generator:1.0
+mkdir -p certs/blog2.nginx.com/certs; docker run -v $PWD/certs/blog2.nginx.com/certs:/certs  -e SSL_DNS=blog2.nginx.com   -e SSL_SUBJECT=blog2.nginx.com   stakater/ssl-certs-generator:1.0
