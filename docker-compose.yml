@@ -6,10 +6,10 @@ services:
     volumes:
       - ./blog1.nginx.com/var/www/html:/var/www/html
       - ./blog1.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
+      - ./certs/blog1.nginx.com/certs:/mnt/certs
+      - ./blog1.nginx.com/etc/apache2/sites-available:/etc/apache2/sites-available
     environment:
       VIRTUAL_HOST: 'blog1.nginx.com'
-      LETSENCRYPT_HOST: 'blog1.nginx.com'
-      LETSENCRYPT_EMAIL: 'example@blog1.nginx.com'
       XDEBUG_IDEKEY: 'phpstorm_phpserver1'
       # 母艦のIPアドレスを指定する
       XDEBUG_HOST: '192.168.0.116'
@@ -18,10 +18,10 @@ services:
     volumes:
       - ./blog2.nginx.com/var/www/html:/var/www/html
       - ./blog2.nginx.com/usr/local/etc/php/conf.d/20_xdebug_setting.ini:/usr/local/etc/php/conf.d/20_xdebug_setting.ini
+      - ./certs/blog2.nginx.com/certs:/mnt/certs
+      - ./blog2.nginx.com/etc/apache2/sites-available:/etc/apache2/sites-available
     environment:
       VIRTUAL_HOST: 'blog2.nginx.com'
-      LETSENCRYPT_HOST: 'blog2.nginx.com'
-      LETSENCRYPT_EMAIL: 'example@blog2.nginx.com'
       XDEBUG_IDEKEY: 'phpstorm_phpserver2'
       # 母艦のIPアドレスを指定する
       XDEBUG_HOST: '192.168.0.116'
@@ -30,7 +30,9 @@ services:
     volumes:
       - ./proxy/html:/usr/share/nginx/html
       - ./proxy/etc/nginx/conf.d/:/etc/nginx/conf.d
+      - ./certs:/mnt/certs
     ports:
       - "80:80"
+      - "443:443"
     restart: always
 
